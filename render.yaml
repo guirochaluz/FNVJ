@@ -1,5 +1,5 @@
 services:
-  - type: static_site
+  - type: static
     name: static_site
     rootDir: frontend
     buildCommand: npm install && npm run build
@@ -9,3 +9,4 @@ services:
         sync: false
       - key: ANALYTICS_KEY
         sync: false
+
