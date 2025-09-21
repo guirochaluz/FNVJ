@@ -1,12 +1,15 @@
 services:
   - type: web
-    name: static_site
-    env: static
-    rootDir: frontend
-    buildCommand: "npm install && npm run build"
-    staticPublishPath: frontend/dist
+    name: streamlit-postgres-starter
+    env: python
+    branch: main
+    plan: free               # ou "starter"/"standard" se quiser mais recursos
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run app.py --server.port $PORT --server.address 0.0.0.0"
+    autoDeploy: true
+    healthCheckPath: "/"
     envVars:
-      - key: VITE_API_BASE_URL
-        value: "https://nexusgroup.online/api"
-      - key: ANALYTICS_KEY
-        value: "sua_chave_aqui"
+      - key: DATABASE_URL
+        value: "postgresql+psycopg://fnvj_user:BWhf1KkIHraxniKSfKw6SQkOgOnvejAQ@dpg-d3862ger433s73f9m6ag-a.oregon-postgres.render.com/fnvj"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
